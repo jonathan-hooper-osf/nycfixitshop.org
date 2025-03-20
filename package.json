@@ -1,13 +1,9 @@
 {
-  "devDependencies": {
-    "tailwindcss": "^3.4.17"
-  },
   "scripts": {
-    "build": "npx tailwindcss -i ./site/css/tailwind.css -o ./site/css/styles.css",
-    "deploy": "npx tailwindcss -i ./site/css/tailwind.css -o ./dist/css/styles.css --minimize && cp ./site/index.html ./dist/index.html && cp ./site/images/* ./dist/images/"
+    "build": "npx @tailwindcss/cli -i ./site/css/tailwind.css -o ./site/css/styles.css --minimize",
+    "watch": "npx @tailwindcss/cli -i site/css/tailwind.css -o site/css/styles.css --watch"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.0.14",
-    "@tailwindcss/postcss": "^4.0.14"
+    "@tailwindcss/cli": "^4.0.14"
   }
 }

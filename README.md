@@ -14,10 +14,16 @@ npm install
 ```
 
 
-## Rebuilding Tailwind CSS
+## Building the Site
 
-After making changes, rebuild Tailwind CSS with:
+To generate the site’s styles and assets, use the following commands:
 
+### Development Mode (Auto-rebuild on changes)
 ```
-npx tailwindcss -i ./styles.css -o ./dist/styles.css --minify
+npm run watch
+```
+
+### Production Build (Optimized for deployment)
+```
+npm run build
 ```

@@ -5,8 +5,8 @@ This is the public website of NYC Fix It Shop - a community initiative focused o
 
 1. **Clone the repository**
 ```
-git clone https://github.com/your-repo/nycfixit.org.git
-cd nycfixit.org
+git clone https://github.com/your-repo/nycfixitshop.org.git
+cd nycfixitshop.org
 ```
 2. **Install dependencies**
 ```

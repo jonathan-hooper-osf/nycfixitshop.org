@@ -1,8 +1,17 @@
-export const onRequest = async ({ request, env }) => {
+export const onRequest = async ({ request, env, next }) => {
+    // Get the authorization header from the request
     const auth = request.headers.get("Authorization");
+    // Construct the expected Basic auth string using environment variables
     const expectedAuth = "Basic " + btoa(`${env.HTTP_AUTH_USERNAME}:${env.HTTP_AUTH_PASSWORD}`);
+
+    // If the provided auth doesn't match, return a 401 Unauthorized response
     if (auth !== expectedAuth) {
-        return new Response("Unauthorized", { status: 401, headers: { "WWW-Authenticate": "Basic" } });
+        return new Response("Unauthorized", {
+            status: 401,
+            headers: { "WWW-Authenticate": "Basic"}
+        });
     }
-    return next();
+
+    // If authorized, continue processing the request
+    return await next();
 };

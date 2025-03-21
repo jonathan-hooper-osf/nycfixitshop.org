@@ -4,4 +4,5 @@ export const onRequest = async ({ request, env }) => {
     if (auth !== expectedAuth) {
         return new Response("Unauthorized", { status: 401, headers: { "WWW-Authenticate": "Basic" } });
     }
+    return next();
 };

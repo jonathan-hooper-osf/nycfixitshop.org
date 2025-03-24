@@ -458,6 +458,11 @@
       margin: calc(var(--spacing) * 16);
     }
   }
+  .md\:mx-16 {
+    @media (width >= 48rem) {
+      margin-inline: calc(var(--spacing) * 16);
+    }
+  }
   .md\:hidden {
     @media (width >= 48rem) {
       display: none;

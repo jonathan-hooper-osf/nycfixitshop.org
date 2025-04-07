@@ -15,8 +15,7 @@ export async function onRequest(context) {
       }
   
       const apiUrl = 'https://api.sender.net/v2/subscribers';
-      //const apiToken = env.SENDER_API_TOKEN;
-      const apiToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDUzZGNiNGZlMWNhMWJlOWM3MDdjNTE3OTczY2MxZGM2MTVlM2FlMDIwZjc1ZjY2MDhmNWVhYzYyNWQ2NmFkMWRlZjhmYWNhNmRmODI2YmIiLCJpYXQiOiIxNzQ0MDM5MzMwLjgzNTc0NyIsIm5iZiI6IjE3NDQwMzkzMzAuODM1NzQ5IiwiZXhwIjoiNDg5NzY0MjkzMC44MzQ1MDIiLCJzdWIiOiI5NTc1NTgiLCJzY29wZXMiOltdfQ.BsgclN1-RsRHD93vieIbikU4_IQr5gwDUeGZJhnYyDydSWC0yHjscH9BjvnrEUvPBzfifwp8BDej_64zeAbMbw';
+      const apiToken = env.SENDER_API_TOKEN;
   
       const response = await fetch(apiUrl, {
         method: 'POST',

@@ -4,6 +4,11 @@ export const onRequest = async ({ request, env, next }) => {
         return await next();
     }
 
+    // If path is /subscribe, allow the request through.
+    if (request.url.includes('/subscribe')) {
+        return await next();
+    }
+
     // Get the authorization header from the request
     const auth = request.headers.get("Authorization");
     

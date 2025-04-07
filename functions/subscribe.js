@@ -8,10 +8,6 @@ export async function onRequest(context) {
       }
   
       const { email, firstName, lastName } = await request.json();
-
-      console.log(email, firstName, lastName);
-
-      return 1
   
       // Validate input
       if (!email || !firstName || !lastName) {

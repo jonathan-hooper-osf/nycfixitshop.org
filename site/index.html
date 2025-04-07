@@ -94,11 +94,28 @@
     <!-- Get Involved Section -->
     <section id="get-involved" class="bg-gray-50 py-16">
       <div class="max-w-4xl mx-auto text-center px-4 md:px-0">
-        <h2 class="text-3xl mulish-700 mb-8">How Can I Get Involved?</h2>
-        <ul class="text-lg space-y-6 text-gray-700 text-center max-w-2xl mx-auto">
-          <li class="my-12"><a href="https://stats.sender.net/forms/e0R225/view" class="px-6 py-3 bg-black text-white rounded-lg mulish-700"><span class="mr-4">✉️</span>Sign up to our email list</a></li>
-          <li class="my-12"><a href="events.html" class="px-6 py-3 bg-black text-white rounded-lg mulish-700"><span class="mr-4">👥</span>Join us at our next meeting.</a></li>
-          <li class="my-12"><a href="#" class="px-6 py-3 bg-black text-white rounded-lg mulish-700"><span class="mr-4">❤️</span>Donate to our campaign.</a></li>
+        <h2 class="text-3xl mb-8 mulish-700">Get Involved</h2>
+        <p class="text-lg text-gray-700 mb-8">
+          Join our community of repair enthusiasts and stay updated on our progress.
+        </p>
+        <form id="subscribe-form" class="max-w-md mx-auto">
+          <div class="space-y-4">
+            <div class="flex flex-col md:flex-row gap-4">
+              <input type="text" id="firstname" name="firstname" placeholder="First name" required
+                class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black">
+              <input type="text" id="lastname" name="lastname" placeholder="Last name" required
+                class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black">
+            </div>
+            <div class="flex flex-col md:flex-row gap-4">
+              <input type="email" id="email" name="email" placeholder="Enter your email" required
+                class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black">
+              <button type="submit" class="px-6 py-3 bg-black text-white rounded-lg mulish-700">
+                Subscribe
+              </button>
+            </div>
+          </div>
+          <p id="subscribe-status" class="mt-4 text-sm"></p>
+        </form>
       </div>
     </section>
   </main>
@@ -107,5 +124,47 @@
   <footer class="bg-gray-100 py-8 text-center">
     <p class="text-sm text-gray-600"><span class="copyleft">&copy;</span> 2025 NYC Fix It Shop. All rights for everyone.</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('subscribe-form');
+      const status = document.getElementById('subscribe-status');
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        status.textContent = 'Subscribing...';
+        status.className = 'mt-4 text-sm text-gray-600';
+
+        const formData = {
+          firstname: document.getElementById('firstname').value,
+          lastname: document.getElementById('lastname').value,
+          email: document.getElementById('email').value
+        };
+
+        try {
+          const response = await fetch('/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            status.textContent = 'Thank you for subscribing!';
+            status.className = 'mt-4 text-sm text-green-600';
+            form.reset();
+          } else {
+            throw new Error(data.message || 'Subscription failed');
+          }
+        } catch (error) {
+          status.textContent = error.message;
+          status.className = 'mt-4 text-sm text-red-600';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

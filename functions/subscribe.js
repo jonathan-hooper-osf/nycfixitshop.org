@@ -8,6 +8,10 @@ export async function onRequest(context) {
       }
   
       const { email, firstName, lastName } = await request.json();
+
+      console.log(email, firstName, lastName);
+
+      return 1
   
       // Validate input
       if (!email || !firstName || !lastName) {
@@ -25,8 +29,8 @@ export async function onRequest(context) {
         },
         body: JSON.stringify({
           email: email,
-          first_name: firstName,
-          last_name: lastName,
+          firstname: firstName,
+          lastname: lastName,
           // Add additional fields as needed
         }),
       });
